@@ -1,305 +1,239 @@
-1. ë‹¨ì¼í–‰ í•¨ìˆ˜
-2. ê·¸ë£¹í•¨ìˆ˜
-3. ê¸°íƒ€ í•¨ìˆ˜
+1. ´ÜÀÏÇà ÇÔ¼ö
+2. ±×·ìÇÔ¼ö
+3. ±âÅ¸ ÇÔ¼ö
 
-# ë‹¨ì¼í–‰ í•¨ìˆ˜
-[1] ë¬¸ìží˜• í•¨ìˆ˜
-[2] ìˆ«ìží˜• í•¨ìˆ˜
-[3] ë‚ ì§œí˜• í•¨ìˆ˜
-[4] ë³€í™˜ í•¨ìˆ˜
-[5] ì¼ë°˜ í•¨ìˆ˜
+# ´ÜÀÏÇà ÇÔ¼ö
+[1] ¹®ÀÚÇü ÇÔ¼ö
+[2] ¼ýÀÚÇü ÇÔ¼ö
+[3] ³¯Â¥Çü ÇÔ¼ö
+[4] º¯È¯ ÇÔ¼ö
+[5] ÀÏ¹Ý ÇÔ¼ö
 
-
--------
-
-##[1] ë¬¸ìží˜• í•¨ìˆ˜
-
-#lower() ì†Œë¬¸ìž
-#upper() ëŒ€ë¬¸ìž
-select lower('HAPPY BIRTHDAY'), upper('Happy Birthday') from dual;
+# [1] ¹®ÀÚÇü ÇÔ¼ö
+select lower('HAPPY BIRTHDAY'), UPPER('Happy Birthday') FROM DUAL;
 
 --select * from dual;
---1í–‰ 1ì—´ì„ ê°–ëŠ” ë”ë¯¸ í…Œì´ë¸” ë§ˆì¹˜ ë¡œê·¸í™•ì¸ì²˜ëŸ¼ í…ŒìŠ¤íŠ¸ í™•ì¸í•˜ë ¤ê³  í•˜ëŠ”ê²ƒ.
+--1Çà1¿­À» °®´Â ´õ¹Ì Å×ÀÌºí
 select 9*7 from dual;
 
+# initcap(): Ã¹¹®ÀÚ¸¸ ´ë¹®ÀÚ·Î º¯È¯
+select deptno, dname, initcap(dname), initcap(loc) from dept;
 
-#initcap() : ì²«ë¬¸ìžë§Œ ëŒ€ë¬¸ìžë¡œ ë³€í™˜í•´ì£¼ëŠ” í•¨ìˆ˜.
-select deptno, dname, initcap(dname), loc, initcap(loc) from dept;
-
-
-#concat(ë³€ìˆ˜1,ë³€ìˆ˜2) : 2ê°œ ì´ìƒì˜ ë¬¸ìžë¥¼ ê²°í•©í•´ì¤€ë‹¤.
+# concat(º¯¼ö1, º¯¼ö2) : 2°³ ÀÌ»óÀÇ ¹®ÀÚ¸¦ °áÇÕÇØÁØ´Ù.
 select concat('abc','1234') from dual;
-select 'abc'+'1234' from dual; -- ì•ˆë˜ì„œ concatì„ ì¨ì•¼í•¨.
 
---[ë¬¸ì œ] ì‚¬ì› í…Œì´ë¸”ì—ì„œ SCOTTì˜ ì‚¬ë²ˆ,ì´ë¦„,ë‹´ë‹¹ì—…ë¬´(ì†Œë¬¸ìžë¡œ),ë¶€ì„œë²ˆí˜¸ë¥¼
---		ì¶œë ¥í•˜ì„¸ìš”.
-select * from emp;
-select empno,ename,lower(job),deptno from emp where ename = upper('scott');
+--[¹®Á¦] »ç¿ø Å×ÀÌºí¿¡¼­ SCOTTÀÇ »ç¹ø,ÀÌ¸§,´ã´ç¾÷¹«(¼Ò¹®ÀÚ·Î),ºÎ¼­¹øÈ£¸¦
+--		Ãâ·ÂÇÏ¼¼¿ä.
+select empno, ename, lower(job), deptno
+from emp where ename =upper('scott');
+--	 »óÇ° Å×ÀÌºí¿¡¼­ ÆÇ¸Å°¡¸¦ È­¸é¿¡ º¸¿©ÁÙ ¶§ ±Ý¾×ÀÇ ´ÜÀ§¸¦ ÇÔ²² 
+--	 ºÙ¿©¼­ Ãâ·ÂÇÏ¼¼¿ä.
+select products_name, output_price||'¿ø', concat(output_price,'¿ø') "ÆÇ¸Å°¡"
+from products;
+--	 
+--	 °í°´Å×ÀÌºí¿¡¼­ °í°´ ÀÌ¸§°ú ³ªÀÌ¸¦ ÇÏ³ªÀÇ ÄÃ·³À¸·Î ¸¸µé¾î °á°ú°ªÀ» È­¸é¿¡
+--	       º¸¿©ÁÖ¼¼¿ä.
+select concat(name, age) from member;
 
---	 ìƒí’ˆ í…Œì´ë¸”ì—ì„œ íŒë§¤ê°€ë¥¼ í™”ë©´ì— ë³´ì—¬ì¤„ ë•Œ ê¸ˆì•¡ì˜ ë‹¨ìœ„ë¥¼ í•¨ê»˜ 
---	 ë¶™ì—¬ì„œ ì¶œë ¥í•˜ì„¸ìš”.
-select products_name, concat(output_price,'ì›') "íŒë§¤ê°€" from products;
+--# substr(º¯¼ö,i,len) : ¹®ÀÚ i ÀÎµ¦½º·Î ½ÃÀÛÇÑ len ¹®ÀÚ ±æÀÌ¸¸Å­ÀÇ º¯¼ö¸¦ ¹ÝÈ¯ÇÔ
+--i°¡ ¾ç¼öÀÏ°æ¿ì: ¾Õ¿¡¼­ºÎÅÍ ÀÎµ¦½º¸¦ Ã£À½
+--À½¼öÀÏ°æ¿ì : µÚ¿¡¼­ºÎÅÍ Ã£À½
+select substr('ABCDEFG', 3, 4), SUBSTR('ABCDEFG',-3,2) FROM DUAL;
+SELECT SUBSTR('991203-1012369', 8), SUBSTR('991203-1012369', -7) FROM DUAL;
 
---	 ê³ ê°í…Œì´ë¸”ì—ì„œ ê³ ê° ì´ë¦„ê³¼ ë‚˜ì´ë¥¼ í•˜ë‚˜ì˜ ì»¬ëŸ¼ìœ¼ë¡œ ë§Œë“¤ì–´ ê²°ê³¼ê°’ì„ í™”ë©´ì—
---	       ë³´ì—¬ì£¼ì„¸ìš”.
-select concat(name,age) from member;
+--# LENGTH(º¯¼ö) : ¹®ÀÚ¿­ ±æÀÌ ¹ÝÈ¯
 
+SELECT LENGTH('991203-1012369') FROM DUAL;
 
+--[¹®Á¦]
+--	»ç¿ø Å×ÀÌºí¿¡¼­ Ã¹±ÛÀÚ°¡ 'K'º¸´Ù Å©°í 'Y'º¸´Ù ÀÛÀº »ç¿øÀÇ
+--	  »ç¹ø,ÀÌ¸§,¾÷¹«,±Þ¿©¸¦ Ãâ·ÂÇÏ¼¼¿ä. ´Ü ÀÌ¸§¼øÀ¸·Î Á¤·ÄÇÏ¼¼¿ä.
+SELECT EMPNO, ENAME, JOB, SAL
+FROM EMP
+WHERE SUBSTR(ENAME,1,1) > 'K' AND SUBSTR(ENAME,1,1) <'Y';
 
-#substr(ë³€ìˆ˜,i,length) : ë¬¸ìž i ì¸ë±ìŠ¤ë¡œ ì‹œìž‘í•œ length ë¬¸ìž ê¸¸ì´ ë§Œí¼ì˜ ë³€ìˆ˜ë¥¼ ë°˜í™˜í•¨.
-iê°€ ì–‘ìˆ˜ì¼ ê²½ìš° : ì•žì—ì„œë¶€í„° ì¸ë±ìŠ¤ë¥¼ ì°¾ìŒ
-iê°€ ìŒìˆ˜ì¼ ê²½ìš° : ë’¤ì—ì„œë¶€í„° ì°¾ìŒ.
-select substr('ABCDEFG',3,4) , substr('ABCDEFG',-3,2) from dual;
-select substr('991010-10101012',8) from dual;
-select substr('991010-10101012',-8) from dual;
+--	»ç¿øÅ×ÀÌºí¿¡¼­ ºÎ¼­°¡ 20¹øÀÎ »ç¿øÀÇ »ç¹ø,ÀÌ¸§,ÀÌ¸§ÀÚ¸´¼ö,
+--	±Þ¿©,±Þ¿©ÀÇ ÀÚ¸´¼ö¸¦ Ãâ·ÂÇÏ¼¼¿ä.
+SELECT EMPNO, ENAME, LENGTH(ENAME), SAL, LENGTH(SAL)
+FROM EMP
+WHERE DEPTNO=20;
 
-#length(ë³€ìˆ˜) : ë¬¸ìžì—´ì˜ ê¸¸ì´ ë°˜í™˜
+--	»ç¿øÅ×ÀÌºíÀÇ »ç¿øÀÌ¸§ Áß 6ÀÚ¸® ÀÌ»óÀ» Â÷ÁöÇÏ´Â »ç¿øÀÇÀÌ¸§°ú 
+--	ÀÌ¸§ÀÚ¸´¼ö¸¦ º¸¿©ÁÖ¼¼¿ä.
 
-select length('938291-1029311') from dual;
+SELECT ENAME, LENGTH(ENAME) FROM EMP
+WHERE LENGTH(ENAME) >=6;
 
+#LPAD/RPAD
+--LPAD(ÄÃ·³,º¯¼ö1, º¯¼ö2): ¹®ÀÚ°ªÀ» ¿ÞÂÊºÎÅÍ Ã¤¿î´Ù.
+--RPAD(ÄÃ·³,º¯¼ö1, º¯¼ö2): ¹®ÀÚ°ªÀ» ¿À¸¥ÂÊºÎÅÍ Ã¤¿î´Ù.
+SELECT ENAME, LPAD(ENAME,15,' '), SAL, LPAD(SAL,10,' ') FROM EMP
+WHERE DEPTNO=10;
 
-
-[ë¬¸ì œ]
-	ì‚¬ì› í…Œì´ë¸”ì—ì„œ ì²«ê¸€ìžê°€ 'K'ë³´ë‹¤ í¬ê³  'Y'ë³´ë‹¤ ìž‘ì€ ì‚¬ì›ì˜
-	  ì‚¬ë²ˆ,ì´ë¦„,ì—…ë¬´,ê¸‰ì—¬ë¥¼ ì¶œë ¥í•˜ì„¸ìš”. ë‹¨ ì´ë¦„ìˆœìœ¼ë¡œ ì •ë ¬í•˜ì„¸ìš”.
-
-select * from emp
-where substr(ename,1,1)  > 'K' and substr(ename,1,1) <'Y';
-
-	ì‚¬ì›í…Œì´ë¸”ì—ì„œ ë¶€ì„œê°€ 20ë²ˆì¸ ì‚¬ì›ì˜ ì‚¬ë²ˆ,ì´ë¦„,ì´ë¦„ìžë¦¿ìˆ˜,
-	ê¸‰ì—¬,ê¸‰ì—¬ì˜ ìžë¦¿ìˆ˜ë¥¼ ì¶œë ¥í•˜ì„¸ìš”.
-	
-	select empno,ename,length(ename),sal,length(sal)
-    from emp
-    where deptno=20;
-	ì‚¬ì›í…Œì´ë¸”ì˜ ì‚¬ì›ì´ë¦„ ì¤‘ 6ìžë¦¬ ì´ìƒì„ ì°¨ì§€í•˜ëŠ” ì‚¬ì›ì˜ì´ë¦„ê³¼ 
-	ì´ë¦„ìžë¦¿ìˆ˜ë¥¼ ë³´ì—¬ì£¼ì„¸ìš”.
-    
-
-#LPAD / RPAD
-    lpad(ì»¬ëŸ¼, ë³€ìˆ˜1, ë³€ìˆ˜2) : ë¬¸ìžê°’ì„ ì™¼ìª½ë¶€í„° ì±„ìš´ë‹¤.
-    rpad(ì»¬ëŸ¼, ë³€ìˆ˜1, ë³€ìˆ˜2) : ë¬¸ìžê°’ì„ ì˜¤ë¥¸ìª½ë¶€í„° ì±„ìš´ë‹¤.
-select ename, lpad(ename,15,'  '),sal,lpad(sal,10,'*') from emp
-where deptno=10;
-
-select rpad(dname,15,'#')from dept;
-
-
+SELECT DNAME, RPAD(DNAME,15,'#') FROM DEPT;
 
 #LTRIM/RTRIM
-LTRIM(ë³€ìˆ˜1, ë³€ìˆ˜2) : ë³€ìˆ˜1ì˜ ê°’ ì¤‘ ë³€ìˆ˜2ì™€ ê°™ì€ ë‹¨ì–´ê°€ ìžˆìœ¼ë©´ ê·¸ ë¬¸ìžë¥¼ ì‚­ì œí•œ ë‚˜ë¨¸ì§€ ê°’ì„ ë°˜í™˜í•¨.
+LTRIM(º¯¼ö1, º¯¼ö2): º¯¼ö1ÀÇ °ªÁß º¯¼ö2¿Í °°Àº ´Ü¾î°¡ ÀÖÀ¸¸é 
+                ±× ¹®ÀÚ¸¦ »èÁ¦ÇÑ ³ª¸ÓÁö°ªÀ» ¹ÝÈ¯ÇÔ
+                
+SELECT LTRIM('TTTHELLO TEST','T'), RTRIM('TTTHELLO TEST','T') FROM DUAL;
+SELECT RTRIM(LTRIM('  HELLO ORACLE  ')) A FROM DUAL;
 
-select LTRIM('TTTHELLO TESTTTT','T'), RTRIM('HHHHELLO TESTH','H')from dual;
-select rtrim(ltrim('    hello oracle   '))  from dual;
+#REPLACE(ÄÃ·³, º¯¼ö1, º¯¼ö2): ÄÃ·³°ªÁß º¯¼ö1¿¡ ÇØ´çÇÏ´Â ¹®ÀÚ¸¦ º¯¼ö2·Î ´ëÃ¼ÇÑ´Ù
 
+SELECT REPLACE('ORACLE TEST','TEST','HI') FROM DUAL;
 
-#REPLACE(ì»¬ëŸ¼, ë³€ìˆ˜1,ë³€ìˆ˜2) : ë³€ìˆ˜1ì„ ë³€ìˆ˜2ë¡œ ë³€ê²½.
-select replace('oracle test','test','hi')from dual;
+--»ç¿øÅ×ÀÌºí¿¡¼­ ´ã´ç¾÷¹« Áß ÁÂÃø¿¡ 'A'¸¦ »èÁ¦ÇÏ°í
+--±Þ¿©Áß ÁÂÃøÀÇ 1À» »èÁ¦ÇÏ¿© Ãâ·ÂÇÏ¼¼¿ä.
+SELECT JOB, LTRIM(JOB,'A'),  SAL, LTRIM(SAL,1) FROM EMP;
+--»ç¿øÅ×ÀÌºí¿¡¼­ 10¹ø ºÎ¼­ÀÇ »ç¿ø¿¡ ´ëÇØ ´ã´ç¾÷¹« Áß ¿ìÃø¿¡'T'¸¦
+--	»èÁ¦ÇÏ°í ±Þ¿©Áß ¿ìÃøÀÇ 0À» »èÁ¦ÇÏ¿© Ãâ·ÂÇÏ¼¼¿ä.
+SELECT JOB, RTRIM(JOB,'T'), SAL, RTRIM(SAL,0) FROM EMP;
 
-ì‚¬ì›í…Œì´ë¸”ì—ì„œ ë‹´ë‹¹ì—…ë¬´ ì¤‘ ì¢Œì¸¡ì— 'A'ë¥¼ ì‚­ì œí•˜ê³ 
-ê¸‰ì—¬ì¤‘ ì¢Œì¸¡ì˜ 1ì„ ì‚­ì œí•˜ì—¬ ì¶œë ¥í•˜ì„¸ìš”.
-select * from emp;
-select ltrim(job,'A'), ltrim(sal,'1') from emp;
-ì‚¬ì›í…Œì´ë¸”ì—ì„œ 10ë²ˆ ë¶€ì„œì˜ ì‚¬ì›ì— ëŒ€í•´ ë‹´ë‹¹ì—…ë¬´ ì¤‘ ìš°ì¸¡ì—'T'ë¥¼
-	ì‚­ì œí•˜ê³  ê¸‰ì—¬ì¤‘ ìš°ì¸¡ì˜ 0ì„ ì‚­ì œí•˜ì—¬ ì¶œë ¥í•˜ì„¸ìš”.
-select rtrim(job,'T'), rtrim(sal, 0) from emp;
-ì‚¬ì›í…Œì´ë¸” JOBì—ì„œ 'A'ë¥¼ '$'ë¡œ ë°”ê¾¸ì–´ ì¶œë ¥í•˜ì„¸ìš”.
-select replace(job,'A','$') from emp;
+--»ç¿øÅ×ÀÌºí JOB¿¡¼­ 'A'¸¦ '$'·Î ¹Ù²Ù¾î Ãâ·ÂÇÏ¼¼¿ä.
+SELECT JOB, REPLACE(JOB,'A','$') FROM EMP;
 
+-- °í°´ Å×ÀÌºíÀÇ Á÷¾÷¿¡ ÇØ´çÇÏ´Â ÄÃ·³¿¡¼­ Á÷¾÷ Á¤º¸°¡ ÇÐ»ýÀÎ Á¤º¸¸¦ ¸ðµÎ
+--	 ´ëÇÐ»ýÀ¸·Î º¯°æÇØ Ãâ·ÂµÇ°Ô ÇÏ¼¼¿ä.
+SELECT JOB, REPLACE(JOB,'ÇÐ»ý','´ëÇÐ»ý') FROM MEMBER;
 
-ê³ ê° í…Œì´ë¸”ì˜ ì§ì—…ì— í•´ë‹¹í•˜ëŠ” ì»¬ëŸ¼ì—ì„œ ì§ì—… ì •ë³´ê°€ í•™ìƒì¸ ì •ë³´ë¥¼ ëª¨ë‘
-	 ëŒ€í•™ìƒìœ¼ë¡œ ë³€ê²½í•´ ì¶œë ¥ë˜ê²Œ í•˜ì„¸ìš”.
-select replace(job,'í•™ìƒ','ëŒ€í•™ìƒ') job from member;
+-- °í°´ Å×ÀÌºí ÁÖ¼Ò¿¡¼­ ¼­¿ï½Ã¸¦ ¼­¿ïÆ¯º°½Ã·Î ¼öÁ¤ÇÏ¼¼¿ä.
+-- ==> UPDATE ¹® »ç¿ëÇØº¸±â
+SELECT NAME,ADDR FROM MEMBER;
 
- ê³ ê° í…Œì´ë¸” ì£¼ì†Œì—ì„œ ì„œìš¸ì‹œë¥¼ ì„œìš¸íŠ¹ë³„ì‹œë¡œ ìˆ˜ì •í•˜ì„¸ìš”.
- select name,addr from member;
- select replace(addr,'ì„œìš¸ì‹œ','ì„œìš¸íŠ¹ë³„ì‹œ') ì£¼ì†Œ from member;
- 
- update member set addr = replace(addr,'ì„œìš¸ì‹œ','ì„œìš¸íŠ¹ë³„ì‹œ');
- 
- 
- #[2] ìˆ«ìží˜• í•¨ìˆ˜
- #ROUND(ê°’), ROUND(ê°’,ìžë¦¬ìˆ˜) : ë°˜ì˜¬ë¦¼ í•¨ìˆ˜
- select round(4567.567), round(4567.567,0), round(45667.567,2), round(4567.567,-2) from dual;
- 
- #TRUNC() : ì ˆì‚­í•¨ ë²„ë¦¼. 
- 	- TRUNC(ê°’) ë˜ëŠ” TRUNC(X,Y) : ë²„ë¦¼ì„ ë‹´ë‹¹í•˜ëŠ” í•¨ìˆ˜. 	  ROUNDí•¨ìˆ˜ì™€ ì‚¬ìš©ë°©ë²•ì€ ê°™ë‹¤. 
+UPDATE MEMBER SET ADDR = REPLACE(ADDR,'¼­¿ï½Ã','¼­¿ïÆ¯º°½Ã'); 
 
+ROLLBACK;
 
+# [2] ¼ýÀÚÇü ÇÔ¼ö
+# ROUND(°ª), ROUND(°ª,ÀÚ¸®¼ö): ¹Ý¿Ã¸² ÇÔ¼ö
+ÀÚ¸®¼ö°¡ ¾ç¼ö¸é ¼Ò¼öÀÚ¸®¸¦, 
+ÀÚ¸®¼ö°¡ À½¼ö¸é Á¤¼öÀÚ¸®¸¦ ¹Ý¿Ã¸²ÇÑ´Ù
+SELECT ROUND(4567.567),ROUND(4567.567, 0), ROUND(4567.567, 2),
+ROUND(4567.567, -2) FROM DUAL;
 
-#CEIL(ê°’): ì˜¬ë¦¼ í•¨ìˆ˜	
-	SELECT CEIL(123.12) FROM DUAL;
-#FLOOR(ê°’): ë‚´ë¦¼ í•¨ìˆ˜
-	SELECT FLOOR(123.12) FROM DUAL;
- # MOD
-	- MOD(ê°’1, ê°’2) : ë‚˜ë¨¸ì§€ ê°’ì„ ëŒë ¤ì£¼ëŠ” í•¨ìˆ˜
- 
- 	ì‚¬ì›í…Œì´ë¸”ì—ì„œ ë¶€ì„œë²ˆí˜¸ê°€ 10ì¸ ì‚¬ì›ì˜ ê¸‰ì—¬ë¥¼ 
-	30ìœ¼ë¡œ ë‚˜ëˆˆ ë‚˜ë¨¸ì§€ë¥¼ ì¶œë ¥í•˜ì„¸ìš”.
-    	SELECT SAL, MOD(SAL,30) FROM EMP WHERE DEPTNO=10
+#TRUNC() : Àý»èÇÔ
+SELECT FLOOR(4567.567),TRUNC(4567.567),TRUNC(4567.567,0),TRUNC(4567.567, 2),
+TRUNC(4567.567,-2) FROM DUAL;
 
-#ABS(ê°’)
-	 :ì„ íƒëœ ê°’ì˜ ì ˆëŒ€ê°’ì„ ë³´ì—¬ì£¼ëŠ” í•¨ìˆ˜. 
-	   ìŒìˆ˜ê°’ì´ ìžˆëŠ” ì»¬ëŸ¼ ê°’ì„ ì–‘ìˆ˜ë¡œ ë‚˜íƒ€ë‚´ê³ ìž í•  ë•Œ ì‚¬ìš©.
-	  select name, age, age-40, abs(age-40) from member;
-      
-      
-      
-      
-      # ë‚ ì§œ í•¨ìˆ˜
-ì˜¤ëŸ¬í´ì€ ì„¸ê¸°,ë…„,ì›”,ì¼,ì‹œ,ë¶„,ì´ˆë¥¼ ë‚´ë¶€ ìˆ«ìž(7BYTE)í˜•ì‹ìœ¼ë¡œ
-ë‚ ì§œë¥¼ ì§€ì •í•œë‹¤.
+#MOD(°ª1, °ª2) : ³ª¸ÓÁö°ªÀ» ¹ÝÈ¯
+--°í°´ Å×ÀÌºí¿¡¼­ È¸¿øÀÌ¸§, ¸¶ÀÏ¸®Áö,³ªÀÌ, ¸¶ÀÏ¸®Áö¸¦ ³ªÀÌ·Î ³ª´«°ªÀ» ¹Ý¿Ã¸²ÇÏ¿© Ãâ·ÂÇÏ¼¼¿ä
+SELECT NAME, MILEAGE, AGE, MILEAGE/AGE,ROUND(MILEAGE/AGE, 1) FROM MEMBER;
+--»óÇ° Å×ÀÌºíÀÇ »óÇ° Á¤º¸°¡¿îµ¥ ¹é¿ø ´ÜÀ§±îÁö ¹ö¸° ¹è¼Ûºñ¸¦ ºñ±³ÇÏ¿© Ãâ·ÂÇÏ¼¼¿ä.
+SELECT PRODUCTS_NAME, TRANS_COST, TRUNC(TRANS_COST,-3) FROM PRODUCTS;
+--»ç¿øÅ×ÀÌºí¿¡¼­ ºÎ¼­¹øÈ£°¡ 10ÀÎ »ç¿øÀÇ ±Þ¿©¸¦ 	30À¸·Î ³ª´« ³ª¸ÓÁö¸¦ Ãâ·ÂÇÏ¼¼¿ä.
+SELECT DEPTNO, ENAME, SAL, TRUNC(SAL/30), MOD(SAL,30) FROM EMP
+WHERE DEPTNO=10;
 
--ë‚ ì§œ ì—°ì‚°
-	--------------------------------------------------
-	ì—°ì‚°				ê²°ê³¼		ì„¤ëª…
-	--------------------------------------------------
-	1) DATE + NUMBER 	DATE		ì¼ìˆ˜ë¥¼ ë‚ ì§œì— ë”í•¨
-	2) DATE - NUMBER 	DATE		ì¼ìˆ˜ë¥¼ ë‚ ì§œì— ëºŒ
-	3) DATE - DATE						ì¼ìˆ˜	
-	4) DATE + NUMBER/24   	DATE		ì‹œê°„ì„ ë‚ ìžì— ë”í•¨
-	--------------------------------------------------
-	[ì‹¤ìŠµ]
-	ì‚¬ì›í…Œì´ë¸”ì—ì„œ í˜„ìž¬ê¹Œì§€ì˜ ê·¼ë¬´ ì¼ìˆ˜ê°€ ëª‡ ì£¼ ëª‡ì¼ì¸ê°€ë¥¼ ì¶œë ¥í•˜ì„¸ìš”.
-	ë‹¨ ê·¼ë¬´ì¼ìˆ˜ê°€ ë§Žì€ ì‚¬ëžŒìˆœìœ¼ë¡œ ì¶œë ¤í•˜ì„¸ìš”.
-	
-	ë¨¼ì €) DATE- DATEë¥¼ í•˜ë©´ ì¼ìˆ˜ê°€ ë‚˜ì˜¨ë‹¤.
-	SELECT HIREDATE,SYSDATE,(SYSDATE-HIREDATE) FROM EMP;
+# CHR(), ASCII()
+SELECT CHR(65), ASCII('A') FROM DUAL;
 
-	SELECT ENAME,SYSDATE,HIREDATE,SYSDATE-HIREDATE "TOTAY DAYS",
-	TRUNC((SYSDATE-HIREDATE)/7) WEEKS, 
-	ROUND(MOD((SYSDATE-HIREDATE),7)) DAYS 
-	FROM EMP
-	ORDER BY SYSDATE-HIREDATE DESC;
+# ABS(°ª): Àý´ë°ªÀ» ±¸ÇÏ´Â ÇÔ¼ö
+SELECT NAME, AGE, AGE-40, ABS(AGE-40) FROM MEMBER;
 
+#CEIL(°ª): ¿Ã¸²°ª
+#FLOOR(°ª): ³»¸²°ª
 
+SELECT CEIL(123.001), FLOOR(123.001) FROM DUAL;
 
-	--------------------------------------------------
-	í•¨ìˆ˜				ì‚¬ìš©ëª©ì 
-	--------------------------------------------------
-	MONTHS_BETWEEN	        ë‘ ë‚ ì§œì‚¬ì´ì˜ ì›”ìˆ˜ë¥¼ ê³„ì‚°
-	ADD_MONTHS		ì›”ì„ ë‚ ì§œì— ë”í•¨
-	LAST_DAY		ì›”ì˜ ë§ˆì§€ë§‰ ë‚ ì„ êµ¬í•¨
-	SYSDATE			ì˜¤ëŸ¬í´ì´ ì„¤ì¹˜ë˜ì–´ ìžˆëŠ” ì„œë²„ì˜ 
-					í˜„ìž¬ ë‚ ì§œì™€ ì‹œê°„ì„ ë°˜í™˜
-	--------------------------------------------------
-    
-    
-    
-    MONTHS_BETWEEN	
-	- ë‚ ì§œì™€ ë‚ ì§œ ì‚¬ì´ì˜ ì›”ìˆ˜ë¥¼ ê³„ì‚°í•œë‹¤.
-	- MONTHS_BETWEEN(DATE1,DATE2)
-	- ê²°ê³¼ëŠ” ìŒìˆ˜ ë˜ëŠ” ì–‘ìˆ˜ê°€ ë  ìˆ˜ ìžˆë‹¤.
-	- ê²°ê³¼ì˜ ì •ìˆ˜ ë¶€ë¶„ì€ ì›”ì„, ì†Œìˆ˜ ë¶€ë¶„ì€ ì¼ì„ ë‚˜íƒ€ë‚¸ë‹¤.
+#POWER()
+#SQRT()
+#SIGN()
+SELECT POWER(2,7), SQRT(64), SQRT(133) FROM DUAL;
 
-	SELECT MONTHS_BETWEEN(SYSDATE,HIREDATE) FROM EMP;
+SELECT AGE-40, SIGN(AGE-40) FROM MEMBER;
+
+[3] ³¯Â¥Çü ÇÔ¼ö
+SELECT SYSDATE, SYSTIMESTAMP FROM DUAL;
+SELECT SYSDATE, SYSTIMESTAMP FROM DUAL;
+³¯Â¥ + ¼ýÀÚ : ÀÏ¼ö¸¦ ³¯Â¥¿¡ ´õÇÔ
+SELECT SYSDATE +3 "3ÀÏ µÚ", SYSDATE -2 "ÀÌÆ²Àü" FROM DUAL;
+
+Áö±Ý ÇöÀç½Ã°£¿¡¼­ 2½Ã°£ µÚ ½Ã°£À» Ãâ·ÂÇØº¸¼¼¿ä
+
+SELECT SYSTIMESTAMP, TO_CHAR(SYSTIMESTAMP + 2/24,'YY/MM/DD HH24:MI:SS') "µÎ ½Ã°£ µÚ" FROM DUAL;
+
+--»ç¿øÅ×ÀÌºí¿¡¼­ ÇöÀç±îÁöÀÇ ±Ù¹« ÀÏ¼ö°¡ ¸î ÁÖ ¸îÀÏÀÎ°¡¸¦ Ãâ·ÂÇÏ¼¼¿ä.
+--	´Ü ±Ù¹«ÀÏ¼ö°¡ ¸¹Àº »ç¶÷¼øÀ¸·Î Ãâ·ÂÇÏ¼¼¿ä.
+
+select concat(round((sysdate-hiredate)/7),'ÁÖ'),
+concat(floor(mod(sysdate-hiredate,7)),'ÀÏ') from emp;
 
 
-ADD_MONTHS
-	- ì •í•´ì§„ ì»¬ëŸ¼ì´ë‚˜ ë‚ ì§œí˜• ë³€ìˆ˜ì— ì›í•˜ëŠ” ê°œì›”ì„ ë”í•˜ê³ ìž í•  ë•Œ ì‚¬ìš©
-	- ADD_MONTHS(D,X)
-	- ê²°ê³¼ê°’: ë‚ ì§œ Dì— Xì›” ë§Œí¼ ë”í•œ ë‚ ì§œë¥¼ ë¦¬í„´í•œë‹¤. ì—¬ê¸°ì„œ XëŠ” ì •ìˆ˜ì´ê³ ,
-	   ë§Œì•½ ê²°ê³¼ê°’ì˜ ì›”ì´ D
-	   ì˜ ì›”ë³´ë‹¤ ë‚ ì§œ ìˆ˜ê°€ ì ë‹¤ë©´ ê²°ê³¼ê°’ì˜ ì›”ì˜ ë§ˆì§€ë§‰ ì¼ì´ ë¦¬í„´ëœë‹¤.
+SELECT HIREDATE, SYSDATE, TRUNC(SYSDATE-HIREDATE), 
+TRUNC((SYSDATE-HIREDATE)/7) WEEKS, TRUNC(MOD((SYSDATE-HIREDATE),7)) DAYS FROM EMP;
 
-	  select add_months('08/09/11',2) from dual;==>08/11/11
-	  SELECT ADD_MONTHS('08/11/11',2) FROM DUAL ==> 09/01/11
-	  _
-	 select add_months('08/01/31',1) from dual;==>08/02/29
-	 select add_months(sysdate,-1) from dual;
+# MONTHS_BETWEEN(DATE1, DATE2) :³¯Â¥1°ú ³¯Â¥2 »çÀÌÀÇ ¿ù¼ö¸¦ °è»êÇÔ
 
-	 select hiredate,add_months(hiredate,-10) from emp
+SELECT MONTHS_BETWEEN(SYSDATE, TO_DATE('22-07-26','YY-MM-DD')) FROM EMP;
 
-	  ê³ ê° í…Œì´ë¸”ì´ ë‘ ë‹¬ì˜ ê¸°ê°„ì„ ê°€ì§„ ìœ ë£Œ íšŒì›ì´ë¼ëŠ” ê°€ì •í•˜ì— ë“±ë¡ì¼ì„ ê¸°ì¤€ìœ¼ë¡œ
-	   ìœ ë£Œ íšŒì›ì¸ ê³ ê°ì˜ ì •ë³´ë¥¼ ë³´ì—¬ì£¼ì„¸ìš”.
-	   select name, reg_date, add_months(reg_date,2) as expire from member;
+# ADD_MONTHS(DATE, N) : ³¯ÀÚ¿¡ N°³¿ùÀ» ´õÇÔ
+SELECT ADD_MONTHS(SYSDATE, 2), ADD_MONTHS(SYSDATE,-2) FROM DUAL;
 
-LAST_DAY
-	- ì›”ì˜ ë§ˆì§€ë§‰ ë‚ ì§œë¥¼ êµ¬í•  ëŒ€ ì‚¬ìš©í•˜ëŠ” í•¨ìˆ˜(ìœ¤ë…„,í‰ë…„ì€ ìžë™ìœ¼ë¡œ ê³„ì‚°í•¨)
-	   ì¼ì • ê´€ë¦¬ í”„ë¡œê·¸ëž¨ì´ë‚˜ ë‹¤ì´ì–´ë¦¬ ë“±ì„ ë§Œë“¤ ë•Œ 1ì›” ~12ì›”ê¹Œì§€ì˜ ë§ˆì§€ë§‰ ì¼ìžë¥¼ 
-	   LAST_DAY í•¨ìˆ˜ë¥¼ ì´ìš©í•˜ì—¬ êµ¬í•˜ë©´ ì‰½ê²Œ ë‹¬ë ¥í”„ë¡œê·¸ëž¨ì„ ë§Œë“¤ ìˆ˜ ìžˆë‹¤.
-	- LAST_DAY(D)
-	- ê²°ê³¼ê°’: Dê°€ í¬í•œë˜ì–´ ìžˆëŠ” ì›”ì˜ ë§ˆì§€ë§‰ ë‚ ì§œ ê°’ì„ ë¦¬í„´
-	 select last_day('03/12/11') from dual==>03/12/31
+# LAST_DAY(D) : ¿ùÀÇ ¸¶Áö¸· ³¯Â¥¸¦ ¹ÝÈ¯ÇÔ (Æò³â/À±³â ÀÚµ¿ °è»êÇÔ)
+SELECT LAST_DAY('22-02-01'), LAST_DAY('20-02-01'), LAST_DAY(SYSDATE) FROM DUAL;
 
-	 ì‚¬ì›í…Œì´ë¸”ì—ì„œ ìž…ì‚¬í•œ ë‹¬ì˜ ê·¼ë¬´ì¼ìˆ˜ë¥¼ ê³„ì‚°í•˜ì—¬ ì¶œë ¥í•˜ë˜,
-	 í† ìš”ì¼ê³¼ ì¼ìš”ì¼ë„ ê·¼ë¬´ì¼ìˆ˜ì— í¬í•¨í•˜ëŠ” ê²ƒìœ¼ë¡œ í•˜ìž.
+-- °í°´ Å×ÀÌºíÀÌ µÎ ´ÞÀÇ ±â°£À» °¡Áø À¯·á È¸¿øÀÌ¶ó´Â °¡Á¤ÇÏ¿¡ µî·ÏÀÏÀ» ±âÁØÀ¸·Î
+-- À¯·á È¸¿øÀÎ °í°´ÀÇ Á¤º¸¸¦ º¸¿©ÁÖ¼¼¿ä.
 
-	select ename, hiredate, last_day(hiredate) last,
-	last_day(hiredate)-hiredate days from emp
-	order by days desc;
-	
+SELECT NAME, REG_DATE, ADD_MONTHS(REG_DATE, 2) "¼­ºñ½º ¸¸±âÀÏ" FROM MEMBER;
 
---SYSDATE
---	- í˜„ìž¬ ì‹œê°„ì„ DATEíƒ€ìž…ìœ¼ë¡œ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜.
---	- SYSDATE
---	- ê²°ê³¼ê°’: í˜„ìž¬ ë¡œì»¬ ë°ì´í„°ë² ì´ìŠ¤ì˜ ë‚ ì§œì™€ ì‹œê°„ê°’ì„ ë¦¬í„´í•œë‹¤.
-	select to_char(sysdate,'yyyy-mm-dd hh:mi:ss') from dual;
-	select to_char(sysdate,'cc year-month-ddd day') from dual
+SELECT SYSDATE FROM DUAL;
+-- %Y-%M-%D
+SELECT TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') FROM DUAL;
 
-	 -cc, scc : ì„¸ê¸°
-	 -yyyy, year, yyy, yy : ì—°ë„
-	 -iyyy, iy, i : ISO ë…„ì„ ì˜ë¯¸
-	 -month,mon, mm: ì›”
-	 -ww, w : ì£¼
-	 -ddd, dd: ì¼ [ddd->1ë…„ì˜ ë‚ ì§œ, dd->1ê°œì›”ì˜ ë‚ ì§œ, d->1ì£¼ì¼ì˜ ë‚ ì§œ]
-	 -hh, hh24, hh12: ì‹œê°„
-	 -day, dy, d: ê·¸ì£¼ì˜ ì‹œìž‘ ì¼ìž
-	 -mi : ë¶„
-	 -ss : ì´ˆ
+SELECT TO_CHAR(SYSDATE,'CC YEAR-MONTH-DDD DAY') FROM DUAL;
 
-3. ë³€í™˜í•¨ìˆ˜
+[4] º¯È¯ ÇÔ¼ö
+TO_CHAR()
+TO_DATE()
+TO_NUMBER()
 
-TO_CHAR(ë‚ ì§œ)
-	- ë¬¸ìžê°€ ì•„ë‹Œ ìžë£Œí˜•ì˜ ê°’ì„ ë¬¸ìží˜•ìœ¼ë¡œ ë³€í™˜ì‹œí‚¤ëŠ” í•¨ìˆ˜
-	- TO_CHAR(ë‚ ì§œ) í•¨ìˆ˜ëŠ” DATEíƒ€ìž…ì„ ë¬¸ìžë¡œ ë°”ê¾¼ë‹¤.
-	- TO_CHAR(D, ì¶œë ¥í˜•ì‹)
-	- ê²°ê³¼ê°’: DATEí˜•ì¸ Dë¥¼ ì¶œë ¥í˜•ì‹ì— ë§žëŠ” VARCHAR2 ë¡œ ë³€í™˜í•˜ì—¬ ë¦¬í„´.
-	      ì¶œë ¥í˜•ì‹ì´ ì—†ì„ ê²½ìš°ì—ëŠ” ê¸°ë³¸ì´ ë˜ëŠ” ë‚ ì§œí˜•ì„ ë¬¸ìží˜•ìœ¼ë¡œ ë³€í™˜í•˜ì—¬ ë¦¬í„´.
+# TO_CHAR(³¯Â¥) : ³¯Â¥À¯ÇüÀ» ¹®ÀÚ¿­·Î º¯È¯ÇÑ´Ù
+  TO_CHAR(¼ýÀÚ) : ¼ýÀÚÀ¯ÇüÀ» ¹®ÀÚ¿­·Î º¯È¯ÇÑ´Ù
+  
+  TO_CHAR(D,Ãâ·ÂÇü½Ä) 
+  SELECT TO_CHAR(SYSDATE), TO_CHAR(SYSDATE, 'YY-MM-DD HH12:MI:SS') FROM DUAL;
 
-	  select to_char(sysdate) from dual;
-	  select to_char(sysdate,'yyyy-mm-dd hh12:mi:ss') from dual;
-
-	 ê³ ê°í…Œì´ë¸”ì˜ ë“±ë¡ì¼ìžë¥¼ 0000-00-00 ì˜ í˜•íƒœë¡œ ì¶œë ¥í•˜ì„¸ìš”.
-	 select name, to_char(reg_date,'yyyy-mm-dd') from member;
+-- °í°´Å×ÀÌºíÀÇ µî·ÏÀÏÀÚ¸¦ 0000-00-00 ÀÇ ÇüÅÂ·Î Ãâ·ÂÇÏ¼¼¿ä.
+SELECT NAME,TO_CHAR(REG_DATE, 'YYYY-MM-DD') FROM MEMBER;
+ --	 
+--	 °í°´Å×ÀÌºí¿¡ ÀÖ´Â °í°´ Á¤º¸ Áß µî·Ï¿¬µµ°¡ 2013³âÀÎ 
+--	 °í°´ÀÇ Á¤º¸¸¦ º¸¿©ÁÖ¼¼¿ä.
+SELECT * FROM MEMBER WHERE TO_CHAR(REG_DATE,'YYYY')='2013';
 	 
-	 ê³ ê°í…Œì´ë¸”ì— ìžˆëŠ” ê³ ê° ì •ë³´ ì¤‘ ë“±ë¡ì—°ë„ê°€ 2003ë…„ì¸ 
-	 ê³ ê°ì˜ ì •ë³´ë¥¼ ë³´ì—¬ì£¼ì„¸ìš”.
-	 select userid,name,age, job, to_char(reg_date,'yyyy-mm-dd') as d 
-	 from member where to_char(reg_date,'yyyy') = '2003';
+--	 °í°´Å×ÀÌºí¿¡ ÀÖ´Â °í°´ Á¤º¸ Áß µî·ÏÀÏÀÚ°¡ 2013³â 5¿ù1ÀÏº¸´Ù 
+--	 ´ÊÀº Á¤º¸¸¦ Ãâ·ÂÇÏ¼¼¿ä. 
+--	 ´Ü, °í°´µî·Ï Á¤º¸´Â ³â, ¿ù¸¸ º¸ÀÌµµ·Ï ÇÕ´Ï´Ù.
+SELECT NAME, TO_CHAR(REG_DATE,'YYYY-MM') FROM MEMBER 
+WHERE TO_CHAR(REG_DATE,'YYYY-MM-DD')>'2013-05-01';
 
-	 ê³ ê°í…Œì´ë¸”ì— ìžˆëŠ” ê³ ê° ì •ë³´ ì¤‘ ë“±ë¡ì¼ìžê°€ 2003ë…„ 5ì›”1ì¼ë³´ë‹¤ 
-	 ëŠ¦ì€ ì •ë³´ë¥¼ ì¶œë ¥í•˜ì„¸ìš”. 
-	 ë‹¨, ê³ ê°ë“±ë¡ ì •ë³´ëŠ” ë…„, ì›”ë§Œ ë³´ì´ë„ë¡ í•©ë‹ˆë‹¤.
-	 select userid,name,age, job, to_char(reg_date,'yyyy-mm-dd') as d 
-	 from member where reg_date >='2003-05-01';
+TO_CHAR(N, Ãâ·ÂÇü½Ä) : ¼ýÀÚÇüÀ» ¹®ÀÚ¿­·Î º¯È¯
 
- 
+SELECT TO_CHAR(100000,'999,999'), TO_CHAR(100000,'$999G999') FROM DUAL;
+--  »óÇ° Å×ÀÌºí¿¡¼­ »óÇ°ÀÇ °ø±Þ ±Ý¾×À» °¡°Ý Ç¥½Ã ¹æ¹ýÀ¸·Î Ç¥½ÃÇÏ¼¼¿ä.
+--	  ÃµÀÚ¸® ¸¶´Ù , ¸¦ Ç¥½ÃÇÕ´Ï´Ù.
+SELECT PRODUCTS_NAME, INPUT_PRICE, TO_CHAR(INPUT_PRICE,'999,999,999') "°ø±Þ°¡°Ý" FROM PRODUCTS;
 
-TO_DATE
-	- TO_CHAR(ë‚ ì§œ)ì™€ ìƒë°˜ëœ ê¸°ëŠ¥ì„ ê°–ëŠ”ë‹¤. ì¦‰, ë¬¸ìž ë°ì´í„°ë¥¼ ê°•ì œë¡œ 
-	   ë‚ ì§œí˜• ë°ì´í„°ë¡œ ë³€í™˜ì‹œí‚¤ëŠ” ê²ƒ.
-	   TO_CHAR(ë‚ ì§œ)ëŠ” ì¶œë ¥ì„ ìœ„í•´ ì‚¬ìš©í•˜ëŠ” í•¨ìˆ˜ì´ë©°, 
-	   TO_DATE ëŠ”
-	   í”„ë¡œê·¸ëž¨ ë‚´ë¶€ì—ì„œ ë‚ ì§œë¥¼ ê³„ì‚°í•˜ê±°ë‚˜ ë¹„êµí•˜ê¸° ìœ„í•´ 
-	   ë‚ ì§œí˜• ë°ì´í„°ë¡œ ë³€í™˜í•˜ëŠ”ë° ì‚¬ìš©ë˜ëŠ” í•¨ìˆ˜ì´ë‹¤.
-	- TO_DATE(ë³€ìˆ˜, ì¶œë ¥í˜•ì‹)
-	- ê²°ê³¼ê°’: CHARë‚˜ VARCHAR2 í˜•ì‹ì˜ ë³€ìˆ˜ë¥¼ ë‚ ì§œí˜• ë°ì´í„°
-			DATEë¡œ ë³€í™˜í•˜ì—¬ ê°’ì„ ë¦¬í„´
-	      ë§Œì¼ ì¶œë ¥í˜•ì‹ì´ ì—†ë‹¤ë©´ ì„¸ì…˜ì˜ ê¸°ë³¸ ë‚ ì§œ ì¶œë ¥í˜•ì‹ì„ ì‚¬ìš©í•´ì•¼ í•œë‹¤.
+--	  »óÇ° Å×ÀÌºí¿¡¼­ »óÇ°ÀÇ ÆÇ¸Å°¡¸¦ Ãâ·ÂÇÏµÇ ÁÖÈ­¸¦ Ç¥½ÃÇÒ ¶§ »ç¿ëÇÏ´Â ¹æ¹ýÀ»
+--	  »ç¿ëÇÏ¿© Ãâ·ÂÇÏ¼¼¿ä.[¿¹: \10,000]
+SELECT PRODUCTS_NAME,OUTPUT_PRICE, TO_CHAR(OUTPUT_PRICE,'L999G999G999') FROM PRODUCTS;
 
-	 68] select to_date('20080601','yyyymmdd') as d from dual;
-	 69] select sysdate - to_date('20080601','YYYYMMDD') from dual;
-	 ...sysdateì™€ ë¬¸ìžê°’ì„ - ì—°ì‚°í•  ìˆ˜ ì—†ìœ¼ë¯€ë¡œ Dateíƒ€ìž…ìœ¼ë¡œ ë³€ê²½í•˜ì—¬ ì—°ì‚°í•˜ëŠ” ì˜ˆì œ.
-	 70] ê³ ê°í…Œì´ë¸”ì˜ ê³ ê° ì •ë³´ ì¤‘ ë“±ë¡ì¼ìžê°€ 2003ë…„ 6ì›”1ì¼ ì´í›„ ë“±ë¡í•œ ê³ ê°ì˜ ì •ë³´ë¥¼
-	      ë³´ì—¬ ì£¼ì„¸ìš”.
-	 select name,reg_date from member
-	 where reg_date > to_date('20030601','YYYYMMDD')
+# TO_DATE(STR, Ãâ·ÂÇü½Ä): ¹®ÀÚ¿­À» ³¯Â¥À¯ÇüÀ¸·Î º¯È¯ÇÑ´Ù
+SELECT TO_DATE('20221128', 'YYYYMMDD') +2 FROM DUAL;
 
-TO_CHAR(ìˆ«ìž)
-	- TO_CHAR(X, ì¶œë ¥í˜•ì‹)
-	- ê²°ê³¼ê°’: ìˆ«ìží˜•ì¸ Xë¥¼ ì˜¤ë¥¸ìª½ì˜ ì¶œë ¥ í˜•ì‹ì— ë§žëŠ” varchar2ë¡œ 
-		     ë³€í™˜í•˜ì—¬ ë¦¬í„´.
-	 71] select to_char(10000,'99,999') from dual;
-	 72] select to_char(10000,'$99G999') from dual==> $10,000
-	 ...GëŠ” ì§€ì •ëœ ìœ„ì¹˜ì—ì„œ ê·¸ë£¹ êµ¬ë¶„ ë¬¸ìžë¥¼ ë¦¬í„´í•œë‹¤.
+SELECT * FROM MEMBER
+WHERE REG_DATE > TO_DATE('20130601','YYYYMMDD');
+
+# TO_NUMBER(STR,Ãâ·ÂÇü½Ä): ¹®ÀÚ¿­À» ¼ýÀÚÇü½ÄÀ¸·Î º¯È¯ÇÑ´Ù
+SELECT TO_NUMBER('10,000','99,999') * 2 FROM DUAL;
+
+--'$8,590' ==> ¼ýÀÚ·Î º¯È¯ÇØº¸¼¼¿ä
+
+select to_number('$8,590','$999g999')+10 from dual;
+
+SELECT TO_CHAR(-23,'999S'), TO_CHAR(-23,'99D99') FROM DUAL;
+
+SELECT TO_CHAR(-23,'99.9'), TO_CHAR(-23,'99.99EEEE') FROM DUAL;
+
+
