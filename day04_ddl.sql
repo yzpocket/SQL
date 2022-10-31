@@ -57,6 +57,31 @@ alter table 테이블명 rename constraint old명 to new명;
 alter table test_tab2 rename constraint test_tab2_pk to test_tab2_no_pk;
 
 
+temp 테이블에 num 컬럼에 pk 제약조건 추가
+alter table temp add constraint temp_num_pk primary key(num);
+desc temp;
+select * from user_constraints where table_name='TEMP';
+
+insert into temp values(1,'aaa');
+delete from temp;
+
+select * from temp;
+
+###제약조건 비활성화 해보기
+alter table 테이블명 disable constraint 제약조건명
+-- temp의 pk제약조건을 비활성화 시키세요;
+alter table temp disable constraint temp_num_pk;
+select * from user_constraints where table_name='TEMP';
+--status에 diabled로 바뀜.
+
+
+###제약조건 활성화 해보기
+alter table 테이블명 enable constraint 제약조건명
+temp의 pk제약조건을 다시활성화 시키세요;
+alter table temp enable constraint temp_num_pk;
+--status에 enabled로 바뀜.
+
+
 
 #####Forein Key 제약조건 설정방법
 부모테이블(master)의 pk를 자식테이블(detail)에서 fk로 참조
@@ -421,26 +446,28 @@ alter table products drop column prod_desc;
 desc products;
 
 
-temp 테이블에 num 컬럼에 pk 제약조건 추가
-alter table temp add constraint temp_num_pk primary key(num);
-desc temp;
-select * from user_constraints where table_name='TEMP';
-
-insert into temp values(1,'aaa');
-delete from temp;
-
-select * from temp;
-
-###제약조건 비활성화 해보기
-alter table 테이블명 disable constraint 제약조건명
--- temp의 pk제약조건을 비활성화 시키세요;
-alter table temp disable constraint temp_num_pk;
-select * from user_constraints where table_name='TEMP';
---status에 diabled로 바뀜.
 
 
-###제약조건 활성화 해보기
-alter table 테이블명 enable constraint 제약조건명
-temp의 pk제약조건을 다시활성화 시키세요;
-alter table temp enable constraint temp_num_pk;
---status에 enabled로 바뀜.
+
+
+
+
+
+##객체이름 변경
+RENAME OLD_NAME TO NEW_NAME;
+TEMP 테이블명을 test_temp 테이블로 변경해보세요
+rename temp to test_temp;
+
+select * from tab;
+
+
+
+
+##테이블 삭제
+--drop table 테이블명 [cascade constraint]
+
+drop table test_temp cascade constraint;
+
+--drop table 테이블명 purge;  모든 구조와 데이터 삭제
+drop table test purge;
+--view, synonym 정보는 데이터사전에는 남아있지만 사용하면 에러 발생..
