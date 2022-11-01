@@ -251,17 +251,17 @@ create index products_ep_code_fk_indx on products(ep_code_fk);
 select * from user_indexes where table_name='PRODUCTS';
 
 카테고리, 상품, 공급업체 join해서 출력하세요
-create or replace view products_info_view
-as
-select c.category_code, category_name, pnum, products_name, output_price, ep_code_fk, ep_name
-from  category c
-right outer join products p
-on c.category_code =p.category_fk
-left outer join supply_comp s
-on p.ep_code_fk = s.ep_code;
+CREATE OR REPLACE VIEW PRODUCTS_INFO_VIEW
+AS
+SELECT C.CATEGORY_CODE, CATEGORY_NAME, PNUM, PRODUCTS_NAME, OUTPUT_PRICE, EP_CODE_FK, EP_NAME
+FROM  CATEGORY C
+RIGHT OUTER JOIN PRODUCTS P
+ON C.CATEGORY_CODE =P.CATEGORY_FK
+LEFT OUTER JOIN SUPPLY_COMP S
+ON P.EP_CODE_FK = S.EP_CODE;
 
-select * from products_info_view
-order by output_price asc;
+SELECT * FROM PRODUCTS_INFO_VIEW
+ORDER BY OUTPUT_PRICE ASC;
 
 
 ##DROP INDEX 인덱스명;
