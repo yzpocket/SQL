@@ -285,13 +285,18 @@ print avgsal;
 MEMO_EDIT 프로시저를 작성하세요
 인파라미터 3개 받아서(글번호, 작성자, 메시지)
 UPDATE문을 수행하는 프로시저
-select * from memo;
+
+
 create or replace procedure memo_edit
-(midx in memo.idx%type, mname in memo.name%type, mmsg in memo.msg%type)
+(midx in memo.idx%type, 
+mname in memo.name%type, 
+mmsg in memo.msg%type)
 is
 begin
-    update memo set msg = mmsg where idx = midx;
-
+    update memo set 
+    name=mname, 
+    msg = mmsg 
+    where idx = midx;
 end;
 /
 
