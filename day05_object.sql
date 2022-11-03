@@ -12,7 +12,7 @@
 
 
 SELECT MAX(DEPTNO) FROM DEPT2;
-##시퀀스 생성
+#################시퀀스 생성 ####################
 CREATE SEQUENCE DEPT2_SEQ
 START WITH 50
 INCREMENT BY 5
@@ -23,7 +23,7 @@ NOCYCLE;
 데이터사전에서 시퀀스 조회
 SELECT * FROM USER_SEQUENCES;
 
-##시퀀스 사용
+######################시퀀스 사용####################
 NEXTVAL : 시퀀스 다음값
 CURRVAL : 시퀀스 현재값
 
@@ -69,7 +69,7 @@ SELECT * FROM USER_SEQUENCES WHERE SEQUENCE_NAME='TEMP_SEQ';
 SELECT TEMP_SEQ.NEXTVAL FROM DUAL;
 
 
-##시퀀스 수정
+######################시퀀스 수정##############################
 [주의사항] 시작값은 수정 할 수 없다. 시작값 수정하려면 DROP하고 다시 CREATE 한다.
 ALTER SEQUENCE 시퀀스명
 INCREMENT BY N
@@ -92,7 +92,7 @@ select * from dept2;
 SELECT DEPT2_SEQ.CURRVAL FROM DUAL;
 
 
-##시퀀스 삭제
+###########################시퀀스 삭제##############################
 DROP SEQUENCE 시퀀스명;
 DROP SEQUENCE TEMP_SEQ;
 
@@ -100,7 +100,7 @@ DROP SEQUENCE TEMP_SEQ;
 
 --############################################VIEW################################################
 
-#VIEW
+################VIEW####################
 [주의사항] view를 생성하려면 create view 권한을 가져야 한다.
 --system/oracle로 접속한뒤 grant create view to scott;
 
@@ -124,11 +124,11 @@ grant create view to scott;
  
  desc emp20_view;
  
- #view 삭제
+ ################view 삭제####################
  drop view 뷰이름;
  drop view emp20_view;
  
- #view 수정
+ ################view 수정####################
  create or replace 뷰이름;
  
  
@@ -168,7 +168,7 @@ on e.deptno=d.deptno;
  
  
  
- ##WITH READ ONLY; 뷰 읽기전용 옵션
+######################WITH READ ONLY; 뷰 읽기전용 옵션 #########################
   뷰에 DML 문장을 수행 할 수 없다.
 create or replace view emp10_view
 as select empno,ename,job,deptno
@@ -178,7 +178,7 @@ select * from emp10_view;
 update emp10_view set job='SALESMAN' where empno=7782;
 --읽기전용이라 업데이트가 안된다.
 
-##WITH CHECK OPTION; 뷰 
+######################WITH CHECK OPTION; 뷰 ###################################
 EMP에서 JOB이 SALESMAN인 사람들만 모아서 EMP_SALES_VIEW만들되
 with check option 주기;
 create or replace view emp_sales_view
@@ -192,7 +192,7 @@ update emp_sales_view set job = 'MANAGER' where ename='WARD';
 ---생성 시 where절에서의 뷰 생성 조건에 영향을 미쳤던 'JOB'은 유지하여 INSERT나 UPDATE되는 것을 막는다.
 
 
-#INLINE VIEW
+#####################INLINE VIEW ##############################
 from 절에서 사용된 서브쿼리를 인라인 뷰라고 한다.
 
 EMP에서 장기 근속자 3명만 뽑아서 해외여행시키려고 한다.
@@ -218,7 +218,7 @@ where rnk>1 and rnk<=3;
 
 --############################################INDEX################################################
 
-# INDEX
+################ INDEX####################
  - 자동생성되는 경우 : PRIMARY KEY나 UNIQUE 제약 조건을 주면 자동으로 생성된다.
  - 명시적으로 생성하는 경우 : 사용자가 특정 컬럼을 지정해서 UNIQUE INDEX 또는 NON_UNIQUE
     인덱스를 생성 할 수 있다.
@@ -264,12 +264,12 @@ SELECT * FROM PRODUCTS_INFO_VIEW
 ORDER BY OUTPUT_PRICE ASC;
 
 
-##DROP INDEX 인덱스명;
+######################DROP INDEX 인덱스명; #########################
 emp_ename_indx 인덱스를 삭제하세요
 drop index emp_ename_indx;
 select * from user_indexes where table_name='EMP';
 
-##인덱스 수정
+######################인덱스 수정 ###################################
 ==>DROP 하고 다시 생성한다.
 
 
