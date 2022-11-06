@@ -63,3 +63,19 @@ begin
 end;
 /
 select * from emp;
+
+
+
+
+------------
+
+create user multi identified by tiger;
+grant connect, resource to multi;
+
+
+
+----------day07 MEMOAPP
+select * from memo order by idx desc;
+
+------day07 MEMOAPP 11.6.2022 자습
+select * from memo order by idx desc;
