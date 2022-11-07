@@ -79,3 +79,8 @@ select * from memo order by idx desc;
 
 ------day07 MEMOAPP 11.6.2022 자습
 select * from memo order by idx desc;
+
+
+----- MyWeb--MemoApp----
+select * from memo order by idx desc;
+
