@@ -14,3 +14,7 @@ update member set status=-1 where idx=3;
 update member set status=-2 where idx=7;
 commit;
 alter table member rename column milage to mileage;
+
+
+
+select idx from member where userid='hong';
