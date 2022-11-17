@@ -51,3 +51,5 @@ select member.*, decode(status,0,'활동회원',-1,'정지회원',-2, '탈퇴회
 from member where status > -2;
 
 select * from memberView order by idx desc;
+
+select * from member;
