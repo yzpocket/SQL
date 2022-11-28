@@ -40,11 +40,7 @@ ALTER TABLE UPCATEGORY
 			UPCG_CODE
 		);
         
-insert into upcategory values(upcategory_seq.nextval, '전자제품');
-insert into upcategory values(upcategory_seq.nextval, '생활용품');
-insert into upcategory values(upcategory_seq.nextval, '의류');
-commit;
-select * from upcategory;
+
         
 --하위 카테고리 복붙-----------------------------------------------------------------
 DROP INDEX PK_DOWNCATEGORY;
@@ -186,3 +182,27 @@ ALTER TABLE PRODUCT
 		REFERENCES UPCATEGORY (
 			UPCG_CODE
 		);
+        
+        
+        
+-------------------------------
+--상위 카테고리 항목추가
+insert into upcategory values(upcategory_seq.nextval, '전자제품');
+insert into upcategory values(upcategory_seq.nextval, '생활용품');
+insert into upcategory values(upcategory_seq.nextval, '의류');
+commit;
+select * from upcategory;
+select * from downcategory;
+--전자제품 하위 추가
+insert into downcategory(upcg_code, downcg_code, downcg_name) values(1, downcategory_seq.nextval, '주방가전');
+insert into downcategory(upcg_code, downcg_code, downcg_name) values(1, downcategory_seq.nextval, '생활가전');
+
+--생활용품 하위 추가
+insert into downcategory(upcg_code, downcg_code, downcg_name) values(2, downcategory_seq.nextval, '휴지');
+insert into downcategory(upcg_code, downcg_code, downcg_name) values(2, downcategory_seq.nextval, '세제');
+
+--의류 하위 추가
+insert into downcategory(upcg_code, downcg_code, downcg_name) values(3, downcategory_seq.nextval, '남성의류');
+insert into downcategory(upcg_code, downcg_code, downcg_name) values(3, downcategory_seq.nextval, '여성의류');
+
+commit;
