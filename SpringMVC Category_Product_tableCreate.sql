@@ -39,12 +39,9 @@ ALTER TABLE UPCATEGORY
 		PRIMARY KEY (
 			UPCG_CODE
 		);
-        
-insert into upcategory values(upcategory_seq.nextval, '전자제품');
-insert into upcategory values(upcategory_seq.nextval, '생활용품');
-insert into upcategory values(upcategory_seq.nextval, '의류');
-commit;
-select * from upcategory;
+
+create sequence upcategory_seq nocache;
+
         
 --하위 카테고리 복붙-----------------------------------------------------------------
 DROP INDEX PK_DOWNCATEGORY;
@@ -92,7 +89,7 @@ ALTER TABLE DOWNCATEGORY
 			UPCG_CODE
 		);
         
-        
+create sequence downcategory_seq nocache;
         
 -- Product DB 테이블 생성 -------------------------------------------------
 
@@ -186,3 +183,5 @@ ALTER TABLE PRODUCT
 		REFERENCES UPCATEGORY (
 			UPCG_CODE
 		);
+        
+create sequence product_seq nocache;
