@@ -206,3 +206,71 @@ insert into downcategory(upcg_code, downcg_code, downcg_name) values(3, downcate
 insert into downcategory(upcg_code, downcg_code, downcg_name) values(3, downcategory_seq.nextval, '여성의류');
 
 commit;
+
+
+
+--------------------
+
+desc product;
+select * from product;
+
+alter table product modify pimage1 varchar2(200);
+alter table product modify pimage2 varchar2(200);
+alter table product modify pimage3 varchar2(200);
+
+-------------- 장바구니 테이블 추가
+
+/* 장바구니 */
+DROP TABLE CART 
+	CASCADE CONSTRAINTS;
+
+/* 장바구니 */
+CREATE TABLE CART (
+	cartNum NUMBER(8) NOT NULL, /* 장바구니번호 */
+	idx_fk NUMBER(8) NOT NULL, /* 회원번호 */
+	PNUM_fk NUMBER(8) NOT NULL, /* 상품번호 */
+	oqty NUMBER(8), /* 수량 */
+	indate DATE /* 등록일 */
+);
+
+COMMENT ON TABLE CART IS '장바구니';
+
+COMMENT ON COLUMN CART.cartNum IS '장바구니번호';
+
+COMMENT ON COLUMN CART.idx_fk IS '회원번호';
+
+COMMENT ON COLUMN CART.PNUM_fk IS '상품번호';
+
+COMMENT ON COLUMN CART.oqty IS '수량';
+
+COMMENT ON COLUMN CART.indate IS '등록일';
+
+ALTER TABLE CART
+	ADD
+		CONSTRAINT FK_MEMBER_TO_CART
+		FOREIGN KEY (
+			idx_fk
+		)
+		REFERENCES MEMBER (
+			idx
+		);
+
+ALTER TABLE CART
+	ADD
+		CONSTRAINT FK_PRODUCT_TO_CART
+		FOREIGN KEY (
+			PNUM_fk
+		)
+		REFERENCES PRODUCT (
+			PNUM
+		);
+
+
+create sequence cart_seq nocache;
+
+-----------------------
+-- 상/하위 카테고리명 가져오기. 
+select p.*,
+		 (select upCg_name from upCategory where upCg_code=p.upCg_code) upCg_name,
+		 (select downCg_name from downCategory where downCg_code=p.downCg_code) downCg_name
+		 from product p order by pnum desc;
