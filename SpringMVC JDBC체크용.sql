@@ -268,9 +268,61 @@ ALTER TABLE CART
 
 create sequence cart_seq nocache;
 
+----------------------
+--cart 들어온지 확인
+
+select * from cart;
+
+---------------------
+--cartView에 보여줄 셀렉트문 작성
+
+select c.*, p.pname,pimage1,price,saleprice,point, (c.oqty*p.saleprice) totalprice, (c.oqty*p.point) totalpoint
+from cart c
+join
+product p
+on c.pnum_fk = p.pnum and c.idx_fk=30;
+
+--장바구니 총액을 위해 Viewt생성
+create or replace view cartView
+as
+select c.*, p.pname,pimage1,price,saleprice,point, (c.oqty*p.saleprice) totalprice, (c.oqty*p.point) totalpoint
+from cart c
+join
+product p
+on c.pnum_fk = p.pnum;
+
+select * from cartVIew;
 -----------------------
 -- 상/하위 카테고리명 가져오기. 
 select p.*,
 		 (select upCg_name from upCategory where upCg_code=p.upCg_code) upCg_name,
 		 (select downCg_name from downCategory where downCg_code=p.downCg_code) downCg_name
 		 from product p order by pnum desc;
+         
+----------로그인 유저 세션 추가되서 확인용.
+select * from member;
+
+
+
+
+----리뷰 게시판 테이블 추가
+
+DROP INDEX PK_REVIEW;
+
+/* 후기게시판 */
+DROP TABLE REVIEW 
+	CASCADE CONSTRAINTS;
+
+/* 후기게시판 */
+CREATE TABLE REVIEW (
+	NUM NUMBER(8) primary key, /* 글번호 */
+	userid varchar2(30) references member(userid),
+    content varchar2(500) not null,
+	SCORE NUMBER(1) not null, /* 평가점수 */
+	FILENAME VARCHAR2(100) default 'noimage.png', /* 업로드파일 */
+	WDATE DATE, /* 작성일 */
+    pnum_fk number(8) references product(pnum)
+);
+
+drop sequence review_seq;
+create sequence review_seq nocache;
